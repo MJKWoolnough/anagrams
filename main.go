@@ -1,14 +1,13 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"os"
 	"sort"
 	"strings"
 	"unsafe"
-
-	"vimagination.zapto.org/errors"
 )
 
 func main() {
@@ -40,7 +39,7 @@ Loop:
 	}
 	bs, err := ioutil.ReadFile("/usr/share/dict/words")
 	if err != nil {
-		return errors.WithContext("error reading dictionary: ", err)
+		return fmt.Errorf("error reading dictionary: %w", err)
 	}
 	ss := strings.Split(strings.ToLower(byteSliceToString(bs)), "\n")
 	if plural {
