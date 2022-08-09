@@ -3,7 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"sort"
 	"strings"
@@ -37,7 +36,7 @@ Loop:
 			break Loop
 		}
 	}
-	bs, err := ioutil.ReadFile("/usr/share/dict/words")
+	bs, err := os.ReadFile("/usr/share/dict/words")
 	if err != nil {
 		return fmt.Errorf("error reading dictionary: %w", err)
 	}
